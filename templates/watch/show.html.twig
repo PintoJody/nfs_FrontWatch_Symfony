@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ShowWatch{% endblock %}
+
+{% block body %}
+
+    {% include "common/header.html.twig" %}
+    
+    <div class="container my-5">
+        {% for item in datas %}
+            {% for watch in item %}
+                <div class="card my-3 mx-auto" style="max-width: 1250px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                    <img src="{{watch.picture}}" class="img-fluid rounded-start" alt="{{watch.name}}">
+                    </div>
+                    <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{watch.name}}</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Couleur : {{watch.color}}</li>
+                            <li class="list-group-item">Taille : {{watch.size}}mm</li>
+                            <li class="list-group-item">GPS : {{ watch.gps == true ? 'Oui' : 'Non' }}</li>
+                            <li class="list-group-item">Bluetooth : {{ watch.bluetooth == true ? 'Oui' : 'Non' }}</li>
+                            <li class="list-group-item">Poids : {{watch.weight}}g</li>
+                        </ul>
+                        <p class="card-text h3">{{watch.shortDescription}}</p>
+                        <p class="card-text">{{watch.description}}</p>
+                        <p class="card-text"><small class="text-muted">Article ajouté le {{watch.createdAt.date|date("d-m-Y")}}</small></p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    
+    {% include "common/footer.html.twig" %}
+
+{% endblock %}

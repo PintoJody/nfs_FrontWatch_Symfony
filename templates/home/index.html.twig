@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+    {% include "common/header.html.twig" %}
+        <!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Montre&Co</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">Le catalogue des montres connectées !</p>
+                </div>
+            </div>
+        </header>
+
+    {% if datas is empty %}
+        <h2>Il n'y a aucun article pour le moment ... </h2>
+    {% else %}
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% for data in datas %}
+                    {% for watch in data %}
+                        {% include "common/display_card.html.twig" with {'watch':watch} %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+{% include "common/footer.html.twig" %}
+
+{% endblock %}
